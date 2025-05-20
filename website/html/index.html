@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Página Inicial</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 5rem;
+        }
+        .link-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #4CAF50;
+            color: #fff;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: background 0.2s;
+        }
+        .link-btn:hover {
+            background: #388e3c;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center;">Bem-vindo</h1>
+    <div class="links-container">
+        <a class="link-btn" href="/user-list">Lista de Usuários</a>
+        <a class="link-btn" href="/message">Envio de Mensagem</a>
+    </div>
+</body>
+</html>

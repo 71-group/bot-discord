@@ -2,12 +2,14 @@ package main
 
 import (
 	"bot-discord/controller"
+	"bot-discord/helper"
+	"bot-discord/helper/bot"
 	"fmt"
 	"log"
-	"net/http"
 	"os"
 	"path/filepath"
 
+	"github.com/bwmarrin/discordgo"
 	"github.com/gin-gonic/gin"
 )
 
@@ -21,11 +23,38 @@ func main() {
 	}
 	r.LoadHTMLFiles(files...)
 
-	r.GET("/", func(c *gin.Context) {
-		c.Redirect(http.StatusPermanentRedirect, "/user-list")
+	cfg := helper.ReadConfig()
+	b := bot.GetBot()
+
+	b.AddHandlerOnce(func(s *discordgo.Session, r *discordgo.Ready) {
+		for _, guild := range s.State.Guilds {
+			_, err := s.ApplicationCommandCreate(cfg.Application, guild.ID, &discordgo.ApplicationCommand{
+				Name:        "ping",
+				Description: "Responde com Pong!",
+			})
+			if err != nil {
+				fmt.Printf("Erro ao criar comando em guild %s: %v\n", guild.ID, err)
+			} else {
+				fmt.Printf("Comando /ping registrado em guild %s\n", guild.ID)
+			}
+		}
+
+		s.AddHandler(func(s *discordgo.Session, i *discordgo.InteractionCreate) {
+			if i.ApplicationCommandData().Name == "ping" {
+				s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
+					Type: discordgo.InteractionResponseChannelMessageWithSource,
+					Data: &discordgo.InteractionResponseData{
+						Content: "Pong!",
+					},
+				})
+			}
+		})
 	})
 
+	r.GET("/", controller.Index)
 	r.GET("/user-list", controller.GetUserList)
+	r.GET("/message", controller.GetMessageList)
+	r.POST("message/:channel_id", controller.PostMessage)
 
 	r.Static("/static", "./website/static/")
 	err = r.Run(":80")
