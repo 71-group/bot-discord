@@ -47,8 +47,17 @@ func main() {
 						Content: "Pong!",
 					},
 				})
+				return
 			}
-		})
+
+			s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
+				Type: discordgo.InteractionResponseChannelMessageWithSource,
+				Data: &discordgo.InteractionResponseData{
+					Content: fmt.Sprintf("Ticket criado: <#%s>", channel.ID),
+				},
+			})
+			s.ChannelMessageSend(channel.ID, fmt.Sprintf("Olá %s! Descreva seu problema.", user.Mention()))
+		}
 	})
 
 	r.GET("/", controller.Index)

@@ -3,7 +3,7 @@ module bot-discord
 go 1.24.3
 
 require (
-	github.com/bwmarrin/discordgo v0.28.1
+	github.com/bwmarrin/discordgo v0.29.0
 	github.com/gin-gonic/gin v1.10.0
 )
 
