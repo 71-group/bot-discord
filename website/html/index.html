@@ -3,9 +3,34 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Página Inicial</title>
+    <title>Painel do Bot Discord</title>
     <link rel="stylesheet" href="/static/css/style.css">
     <style>
+        .dashboard {
+            max-width: 600px;
+            margin: 3rem auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+            padding: 2rem;
+            text-align: center;
+        }
+        .dashboard img {
+            width: 64px;
+            margin-bottom: 1rem;
+        }
+        .dashboard h2 {
+            margin-bottom: 1rem;
+            color: #222;
+        }
+        .dashboard p {
+            color: #555;
+            margin-bottom: 2rem;
+        }
+        .dashboard .links-container {
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
         .links-container {
             display: flex;
             flex-direction: column;
@@ -26,13 +51,42 @@
         .link-btn:hover {
             background: #388e3c;
         }
+        .navbar {
+            display: flex;
+            align-items: center;
+            background: #333;
+            padding: 0.5rem 1rem;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        .navbar img {
+            height: 28px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
     </style>
 </head>
 <body>
-    <h1 style="text-align:center;">Bem-vindo</h1>
-    <div class="links-container">
-        <a class="link-btn" href="/user-list">Lista de Usuários</a>
-        <a class="link-btn" href="/message">Envio de Mensagem</a>
+    <nav class="navbar">
+        <a href="/"><img src="/static/images/favicon.png" alt="Bot" style="height:28px;vertical-align:middle;margin-right:8px;"></a>
+        <a href="/">Início</a>
+        <a href="/user-list">Usuários</a>
+        <a href="/message">Enviar Mensagem</a>
+    </nav>
+    <div class="dashboard">
+        <img src="/static/images/favicon.png" alt="Bot">
+        <h2>Painel de Administração do Bot Discord</h2>
+        <p>
+            Gerencie usuários, envie mensagens e monitore seu bot de forma simples e rápida.<br>
+            Use o menu acima para navegar pelas funções.
+        </p>
+        <div class="links-container">
+            <a class="link-btn" href="/user-list">Lista de Usuários</a>
+            <a class="link-btn" href="/message">Envio de Mensagem</a>
+        </div>
     </div>
 </body>
 </html>

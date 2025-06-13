@@ -1,15 +1,70 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/static/images/favicon.png">
-  <link rel="stylesheet" href="/static/css/style.css">
-  <title>Lista de Usuários</title>
+    <meta charset="UTF-8">
+    <title>Lista de Usuários - Painel do Bot Discord</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <style>
+        .user-list-container {
+            max-width: 700px;
+            margin: 2rem auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+            padding: 2rem;
+        }
+        .user-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f4f4f4;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .user-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .user-name {
+            font-weight: bold;
+            color: #23272a;
+        }
+        .user-id {
+            color: #888;
+            font-size: 0.95rem;
+        }
+        .user-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .user-action {
+            padding: 0.4rem 1rem;
+            border: none;
+            border-radius: 6px;
+            background: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .user-action.ban {
+            background: #e53935;
+        }
+        .user-action:hover {
+            opacity: 0.85;
+        }
+    </style>
 </head>
 <body>
-    <h1>Seja Bem Vindo,<br>{{.User}}</h1>
-    <div class="user-list" id="userList"></div>
-    <script src="/static/js/script.js"></script>
+    <nav class="navbar">
+        <a href="/">Início</a>
+        <a href="/user-list">Usuários</a>
+        <a href="/message">Enviar Mensagem</a>
+    </nav>
+    <div class="user-list-container">
+        <h2>Usuários do Servidor</h2>
+        <div id="user-list"></div>
+    </div>
+    <script src="static/js/user-list.js"></script>
 </body>
 </html>

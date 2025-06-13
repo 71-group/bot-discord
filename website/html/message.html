@@ -71,9 +71,43 @@
       margin-top: 15px;
       text-align: center;
     }
+
+    .navbar {
+      background-color: #333;
+      overflow: hidden;
+      padding: 10px 0;
+      border-radius: 0 0 12px 12px;
+      margin: 0 -30px 30px -30px;
+    }
+
+    .navbar a {
+      float: left;
+      display: flex;
+      align-items: center;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    .navbar a:hover {
+      background-color: #575757;
+      border-radius: 8px;
+    }
+
+    .navbar img {
+      margin-right: 8px;
+    }
   </style>
 </head>
 <body>
+  <nav class="navbar">
+    <a href="/"><img src="/static/images/favicon.png" alt="Bot" style="height:28px;vertical-align:middle;margin-right:8px;"></a>
+    <a href="/">Início</a>
+    <a href="/user-list">Usuários</a>
+    <a href="/message">Enviar Mensagem</a>
+  </nav>
   <div class="container">
     <h2>Envie sua Mensagem</h2>
     <form>
@@ -88,6 +122,7 @@
 
       <button type="button" onclick="send()">Enviar</button>
     </form>
+    <div id="feedback" class="success"></div>
   </div>
   <script>
     function send() {
@@ -102,10 +137,10 @@
       .then(response => response.json())
       .then(data => {
         if (data.status == "ok") {
-          alert('Mensagem enviada com sucesso!');
+          document.getElementById('feedback').innerText = 'Mensagem enviada com sucesso!';
           document.getElementById('mensagem').value = '';
         } else {
-          alert('Erro ao enviar mensagem: ' + data.error);
+          document.getElementById('feedback').innerText = 'Erro ao enviar mensagem: ' + data.error;
         }
       })
       .catch(error => console.error('Error:', error));
