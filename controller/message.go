@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"bot-discord/helper/bot"
+	"botdiscord/helper/bot"
 	"fmt"
 
 	"github.com/gin-gonic/gin"

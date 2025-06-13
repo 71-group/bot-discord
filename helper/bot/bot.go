@@ -1,7 +1,7 @@
 package bot
 
 import (
-	"bot-discord/helper"
+	"botdiscord/helper"
 	"log"
 	"sync"
 

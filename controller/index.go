@@ -1,7 +1,12 @@
 package controller
 
-import "github.com/gin-gonic/gin"
+import (
+	"botdiscord/helper"
 
+	"github.com/gin-gonic/gin"
+)
+
+// Importa o RenderWithUser do main
 func Index(c *gin.Context) {
-	c.HTML(200, "index.html", gin.H{})
+	helper.RenderWithUser(c, 200, "index.html", nil)
 }

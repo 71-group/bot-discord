@@ -14,7 +14,7 @@ type Usuario struct {
 func GetUserList(c *gin.Context) {
 	usuarios := []Usuario{
 		{ID: "123", Nome: "Matheus"},
-		{ID: "456", Nome: "Maria"},
+		{ID: "456", Nome: "Vitor"},
 	}
 	c.JSON(http.StatusOK, usuarios)
 }
