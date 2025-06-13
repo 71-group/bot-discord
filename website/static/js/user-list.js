@@ -24,33 +24,12 @@ async function carregarUsuarios() {
 async function enviarDM(id, nome) {
     const mensagem = prompt(`Mensagem para ${nome}:`);
     if (!mensagem) return;
-    const res = await fetch('/api/send-dm', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({id, mensagem})
-    });
-    const data = await res.json();
-    if (data.success) {
-        alert('DM enviada!');
-    } else {
-        alert('Erro ao enviar DM.');
-    }
+    alert('Função de envio de DM ainda não implementada no backend.');
 }
 
 async function banirUsuario(id, nome) {
     if (!confirm(`Tem certeza que deseja banir ${nome}?`)) return;
-    const res = await fetch('/api/ban-user', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({id})
-    });
-    const data = await res.json();
-    if (data.success) {
-        alert('Usuário banido!');
-        carregarUsuarios();
-    } else {
-        alert('Erro ao banir usuário.');
-    }
+    alert('Função de banir ainda não implementada no backend.');
 }
 
 carregarUsuarios();

@@ -25,13 +25,6 @@ func main() {
 
 	cfg := helper.ReadConfig()
 	b := bot.GetBot() // GetBot já faz b.Open(), não precisa abrir de novo!
-
-	// Remova ou comente esta linha:
-	// err = b.Open()
-	// if err != nil {
-	// 	fmt.Println("Erro ao conectar o bot:", err)
-	// 	return
-	// }
 	defer b.Close()
 	fmt.Println("Bot do Discord está online!")
 
@@ -116,11 +109,18 @@ func main() {
 	})
 
 	r.GET("/", controller.Index)
-	r.GET("/user-list", controller.GetUserList)
+	r.GET("/api/users", controller.GetUserList)
 	r.GET("/message", controller.GetMessageList)
 	r.POST("message/:channel_id", controller.PostMessage)
 
-	r.Static("/static", "./website/static/")
+	// Serve arquivos estáticos (CSS, JS, imagens)
+	r.Static("/static", "./website/static")
+
+	// Serve páginas HTML
+	r.GET("/user-list", func(c *gin.Context) {
+		c.File("./website/html/user-list.html")
+	})
+
 	err = r.Run(":80")
 	if err != nil {
 		fmt.Println(err)

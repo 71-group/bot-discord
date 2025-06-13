@@ -17,7 +17,7 @@ usuarios.forEach(usuario => {
     <div class="user-email">${usuario.email}</div>
     <button class="user-action" onclick="alert('Função em breve!')">Enviar DM</button>
     <button class="user-action" onclick="alert('Função em breve!')">Banir</button>
-    `;
+`;
 
     userList.appendChild(card);
 });
